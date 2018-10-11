@@ -272,6 +272,10 @@ void npc_escortAI::Start(bool run, const Player* player, const Quest* quest, boo
 
     // disable npcflags
     m_creature->SetUInt32Value(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_NONE);
+    
+    // Se a criatura tiver a flag UNIT_FLAG_IMMUNE_TO_NPC, então será removida.
+    if (m_creature->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_NPC))
+        m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_NPC);
 
     AddEscortState(STATE_ESCORT_ESCORTING);
 
